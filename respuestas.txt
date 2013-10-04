@@ -1,0 +1,402 @@
+María Rojas Estévez
+Lenguajes y Paradigmas de Programación
+Práctica 3 - L2
+﻿
+18. Escriba el programa que muestra por la consola la frase "Hola Mundo". ¿Que signiﬁcado tiene la salida? (puts ’Hola Mundo’)
+	irb(main):001:0> puts 'Hola Mundo'
+	Hola Mundo
+	=> nil
+Muestra por pantalla la cadena Hola Mundo
+
+
+21. ¿Que diferencia hay entre "\t\n" y ’\t\n’ ?
+	irb(main):001:0> "\t\n" 
+	=> "\t\n"
+	irb(main):002:0> '\t\n'
+	=> "\\t\\n"
+Lo primero es interpretado como una cadena de texto.
+Lo segundo interpreta los caracteres especiales.
+Por tanto las comillas dobles toman el valor original, mientras que las comillas simples interpretan el \t y \n como tabulación y salto de línea respectivamente.
+
+22. ¿Como funciona %q? ¿Que es %q{hello world\n}? ¿Que es %q{’a’ ’b’ ’c’}?
+	irb(main):003:0> %q{hello world\n}
+	=> "hello world\\n"
+	irb(main):004:0> %q{'a' 'b' 'c'}
+	=> "'a' 'b' 'c'"
+%q: se utiliza cuando en una cadena ya vienen incluidas comillas, por ejemplo I'm María. Así evitamos que se nos cierren inesperadamente las comillas y se nos quede colgada el resto de la cadena.
+
+23. ¿Como funciona %Q? ¿Que es %Q{hello world\n}? ¿Que es %Q{"a" "b" "c"}?
+	irb(main):008:0> %Q{hello world\n}
+	=> "hello world\n"
+	irb(main):009:0> %Q{"a" "b" "c"}
+	=> "\"a\" \"b\" \"c\""
+%Q:funciona igual que lo explicado en la pregunta anterior pero para las comillas dobles.
+
+24. ¿Que queda en c?
+irb(main):001:0> a = 4
+=> 4
+irb(main):002:0> b =2
+=> 2
+irb(main):003:0> c = <<HERE
+irb(main):004:0" --#{a}--
+irb(main):005:0" --#{b}--
+irb(main):006:0" HERE
+
+=> "--4--\n--2--\n"
+Vemos que muestra el contenido de a y de b
+
+25. ¿Que queda en c?
+irb(main):001:0> a = 4
+=> 4
+irb(main):002:0> b =2
+=> 2
+irb(main):008:0> c = <<’HERE’
+irb(main):009:0’ --#{a}--
+irb(main):010:0’ --#{b}--
+irb(main):011:0’ HERE
+
+=> "--\#{a}--\n--\#{b}--\n"
+Con respecto al ejercicio anterior, vemos que al poner las comillas simples, interpreta los caracteres tal cual.
+26. s = "hello". ¿Cual es el valor de las siguientes expresiones?
+s[0,2]:
+ he		# Empezando en la posición 0 del array, muestra las dos 				  primeras letras
+s[-1,1]
+: o		# Los valores negativos indica que se empieza por el final, 			  por tanto empezando por la primera posición contando del 			  final, muestra 1 letra
+s[0,10]: hello	# Empezando en la posición 0, muestra las 10 primeras letras
+
+27. ¿Que queda en g?
+>> g = "hello"
+=> "hello"
+>> g << " world"
+
+=> "hello world"
+El operador “<<” sirve para la concatenación de cadenas
+
+28. ¿Que queda en e?
+>> e = ’.’*3
+
+=> "…"
+
+29. ¿Cual es el resultado?
+>> a = 1
+=> 1
+>> "#{a=a+1} "*3
+
+=> "2 2 2 "
+
+30. ¿Que es esto? %w[this is a test]
+	irb(main):027:0> %w[this is a test]
+	=> ["this", "is", "a", "test"]
+Es un vector formado por cuatro cadenas
+
+31. ¿Que es esto? %w[\t \n]
+	irb(main):028:0> %w[\t \n]
+	=> ["\\t", "\\n"]
+Es un vector formado por las cadenas \t y \n, es decir que aunque \t y \n sean caracteres protegidos, %w les quita ese rol y los convierte en cadena.
+
+32. ¿Que es esto? %W[\t \n]
+	irb(main):029:0> %W[\t \n]
+	=> ["\t", "\n"]
+Es un vector formado por los caracteres especiales \t y \n, tabulador y salto de línea respectivamente.
+
+33. ¿Que contiene nils? nils = Array.new(3)
+	irb(main):030:0> nils = Array.new(3)
+	=> [nil, nil, nil]
+Crea un nuevo array de 3 posiciones vacío.
+
+34. ¿Que contiene zeros? zeros = Array.new(3, 0)
+	irb(main):031:0> zeros = Array.new(3, 0)
+	=> [0, 0, 0]
+Crea un nuevo array de 3 posiciones rellenado con 0.
+
+35. ¿Que queda en b?
+>> x = [[1,2],[3,4]]
+=> [[1, 2], [3, 4]]
+>> b = Array.new(x)
+
+=> [[1, 2], [3, 4]]
+Se crea un array b que almacena el contenido de x.
+
+
+
+36. ¿Que queda en c?
+>> c = Array.new(3) { |i| 2*i }
+
+=> [0, 2, 4]
+Se crea un vector de 3 posiciones y a continuación se le indica su contenido.
+37. ¿Cual es el resultado de cada una de estas operaciones?
+>> a = (’a’..’e’).to_a
+=> ["a", "b", "c", "d", "e"]
+>> a[1,1]
+=> ["b"]		# Empezando en la posición 1 del vector, mostrar el contenido 			de 1 posición
+>> a[-2,2]
+=> ["d", "e"]	# Empezando desde la segunda posición empezando por el final, 			mostrar el contenido de 2 posiciones
+>> a[0..2]
+=> ["a", "b", "c"]
+	# Muestra el contenido desde la posición 0 hasta la 2
+>> a[0...1]
+			
+=> ["a"]
+		# Muestra el contenido desde la posicón 0 hasta la 1, sin 				incluir la última posición
+>> a[-2..-1]
+=> ["d", "e"]	# Muestra el contenido desde la posición -2 hasta la -1
+
+38. ¿Cual es el resultado de cada una de estas operaciones?
+>> a
+=> ["a", "b", "c", "d", "e"]
+>> a[0,2] = %w{A B}
+=> ["A", "B"]
+>> a
+=> ["A", "B", "c", "d", "e"]
+>> a[2..5] = %w{C D E}
+=> ["C", "D", "E"]
+>> a
+=> ["A", "B", "C", "D", "E"]
+>> a[0,0] = [1,2,3]
+=> [1, 2, 3]
+>> a
+=> [1, 2, 3, "A", "B", "C", "D", "E"]
+>> a[0,2] = []
+=> []
+>> a
+=> [3, "A", "B", "C", "D", "E"]
+>> a[-1,1] = [ ’Z’ ]
+=> ["Z"]
+>> a
+=> [3, "A", "B", "C", "D", "Z"]
+>> a[-2,2] = nil
+=> nil
+>> a
+=> [3, "A", "B", "C"]
+
+39. ¿Cual es el resultado de cada una de estas operaciones?
+>> a = (1...4).to_a
+=>
+ [1,2,3]
+>> a = a + [4, 5]
+=>
+ [1,2,3,4,5]
+>> a += [[6, 7, 8]]
+=>
+[1,2,3,4,5,[6,7,8]]
+>> a = a + 9
+=> TypeError: can't convert Fixnum into Array
+	from (irb):55:in `+'
+	from (irb):55
+	from :0
+Da error ya que no podemos sumarle un número
+
+40. ¿Cual es el resultado de cada una de estas operaciones?
+>> x = %w{a b c b a}
+=> ["a", "b", "c", "b", "a"]
+>> x = x - %w{b c d}
+=>
+ [“a”, “a”]
+
+41. ¿Cual es el resultado de cada una de estas operaciones?
+>> z = [0]*8
+=>
+[0,0,0,0,0,0,0,0]
+
+42. ¿Cual es el resultado de cada una de estas operaciones?
+>> a = []
+=> []
+>> a << 1
+=>
+ [1]
+>> a << 2 << 3
+=>
+ [1, 2, 3]
+>> a << [4, 5, 6]
+=>
+ [1, 2, 3, [4, 5, 6]]
+>> a.concat [7, 8]
+=>
+ [1, 2, 3, [4, 5, 6], 7, 8]
+
+43. ¿Cual es el resultado de cada una de estas operaciones?
+>> a = [1, 1, 2, 2, 3, 3, 4]
+=> [1, 1, 2, 2, 3, 3, 4]
+>> b = [5, 5, 4, 4, 3, 3, 2]
+=> [5, 5, 4, 4, 3, 3, 2]
+>> c = a | b
+=>
+ [1, 2, 3, 4, 5]
+>> d = b | a
+=>
+ [5, 4, 3, 2, 1]
+>> e = a & b
+=>
+ [2, 3, 4]
+>> f = b & a
+=>
+ [4, 3, 2]
+
+44. ¿Que resultados dan las siguientes operaciones?
+>> a = 1..10
+=> 1..10
+>> a.class
+=> Range
+>> a.to_a
+=>
+ [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+>> b = 1...10
+=> 1....10
+>> b.to_a
+=>
+ 
+[1, 2, 3, 4, 5, 6, 7, 8, 9,]
+>> b.include? 10
+=>
+ false
+>> b.include? 8
+=>
+ true
+>> b.step(2) {|x| print "#{x} " }
+=> 13579=>1,,,10
+>> 1..3.to_a
+=> NoMethodError: undefined method `to_a' for 3:Fixnum
+	from (irb):57
+	from :0
+Da un eror porque faltan los paréntesis
+45. ¿Que resultados dan las siguientes operaciones?
+>> r = 0...100
+=> 0....100
+>> r.member? 50
+=>
+ true
+>> r.include? 99.9
+=>
+ true
+>> r.member? 99.9
+=>
+ true
+
+46. ¿Que resultados dan las siguientes operaciones?
+>> true.class
+=>
+ TrueClass
+>> false.class
+=>
+ FalseClass
+>> puts "hello" if 0
+=>
+ hello
+>> puts "hello" if nil
+=>
+ nil
+>> puts "hello" if ""
+=>
+ (irb):59: warning: string literal in condition
+hello
+=> nil
+
+47. ¿Que resultados dan las siguientes operaciones?
+>> x = :sym
+=> :sym
+>> x.class
+=>
+ Symbol
+>> x == ’sym’
+=>
+ false
+>> x == :sym
+=>
+ true
+>> z = :’a long symbol’
+=> :"a long symbol"
+>> z.class
+=>
+ Symbol
+>> x == ’sym’.to_sym
+=>
+ true
+>> x.to_s == ’sym’
+=>
+ true
+
+48. ¿Que resultados se dan?
+>> s = "Ruby"
+=> "Ruby"
+>> t = s
+=> "Ruby"
+>> t[-1] = ""
+=> ""
+>> print s
+>> t = "Java"
+=> "Java"
+>> print s, t
+=> RubJava
+
+49. ¿Cual es el resultado?
+>> "%d %s" % [3, "rubies"]
+=>
+ “3 rubies”
+
+
+
+
+50. ¿Cuales son los resultados?
+>> x, y = 4, 5
+=>
+ [4, 5]
+>> z = x > y ? x : y
+=>
+ 5
+>> x,y,z = [1,2,3]
+=>
+ [1, 2, 3]
+
+51. ¿Que resultados dan las siguientes operaciones?
+>> x = { :a => 1, :b => 2 }
+=> {:b=>2, :a=>1}
+>> x.keys
+=>
+ [:a, :b]
+>> x.values
+=>
+ [1, 2]
+>> x[:c] = 3
+=> 3
+>> x
+=>
+ {:a=>1, :b=>2, :c=>3}
+>> x.delete(’a’)
+=> nil
+>> x
+=>
+ {:a=>1, :b=>2, :c=>3}
+>> x.delete(:a)
+=> 1
+>> x
+=>
+ {:b=>2, :c=>3}
+>> x = { :a => 1, :b => 2, :c => 4 }
+=> {:b=>2, :c=>4, :a=>1}
+>> x.delete_if { |k,v| v % 2 == 0 }
+=>
+ {:a=>1}		# Borra los que son pares
+>> x
+=>
+ {:a=>1}
+
+52. ¿Que hace yield 4, 5?
+Llama a un bloque que se encuentra a continuación del método dado con los arguentos 4 y 5.
+
+53. ¿Que hace la siguiente sentencia? counts = Hash.new(0) ¿Que diferencia hay con la asignacion
+ counts = {}?
+En el primer caso los elementos del Hash son inicialiazados automáticamente a 0.
+En el segundo caso se inicializan a nil.
+
+54. ¿Que retorna esta expresion? ’hello world, hello LPP’.scan /\w+/
+=> ["hello", "world", "hello", "LPP"]
+Crea un array cuyos elementos son las palabras de la cadena. La expresión solo acepta letras tal y como contempla la expresión regular que se le pasa a la función scan. Es decir que coge las palabras pero omite los espacios. Si le pasaramos \w*/ cogería también los espacios.
+55. Explique que hacen estas sentencias:
+c = { :a => 3, :b => 2, :c => 1 }
+	irb(main):063:0> c = { :a => 3, :b => 2, :c => 1}
+	=> {:b=>2, :c=>1, :a=>3}
+Son hash, se crean símbolos y se calcula un hash para cada símbolo, la sentencia siguiente muestra la asignación de los valores a los símbolos en el orden en el que los calculó el programa.
+
+c.keys.sort.each { |k| puts c[k] }
+Ordena el vector c de menor a mayor.
+
